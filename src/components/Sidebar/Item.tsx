@@ -12,7 +12,7 @@ interface NavigationItemProps {
 
 const NavigationItem: React.FC<NavigationItemProps> = ({ children, Icon, href, isExternal }) => {
     return (
-        <Link href={href} className="navigation-item group" target={isExternal ? "_blank" : "_self"}>
+        <Link href={href} className="navigation-item group select-none" target={isExternal ? "_blank" : "_self"}>
             <Icon className="text-lg" /> <span className="text-sm font-medium">{ children }</span> {isExternal && <HiExternalLink className="ml-auto text-slate-300 group-hover:text-slate-600 transition-colors" />}
         </Link>
     );
