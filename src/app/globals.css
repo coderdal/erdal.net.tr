@@ -7,3 +7,9 @@ body {
   font-size: 1rem;
   line-height: 1.5rem;
 }
+
+@layer utilities {
+  .navigation-item {
+    @apply w-full py-2 px-2.5 flex items-center gap-2.5 cursor-pointer rounded-md my-1 transition-colors duration-150 hover:bg-gray-100;
+  }
+}
