@@ -4,7 +4,11 @@ const postSchema = new Schema(
     {
         slug: String,
         title: String,
-        content: String
+        content: String,
+        views: {
+            type: Number,
+            default: 0
+        }
     }, 
     {
         timestamps: true

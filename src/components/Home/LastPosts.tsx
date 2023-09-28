@@ -6,7 +6,7 @@ interface Post {
   _id: string;
   slug: string;
   title: string;
-  views: number;
+  views: number | string;
   content: string;
   createdAt: string;
   updatedAt: string;
@@ -32,6 +32,7 @@ const Introduction: React.FC = async () => {
 
   posts.forEach(post => {
     post.createdAt = moment(post.createdAt).format("DD/MM/YYYY");
+    post.views = String(post.views).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   });
 
   return (
