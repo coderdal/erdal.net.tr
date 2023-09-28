@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 export async function GET() {
     try {
         await connectDB();
-        const posts = await Post.find();
+        const posts = await Post.find().sort({createdAt: -1});
         return NextResponse.json({posts}, {status: 200});
     } catch (error) {
         return NextResponse.json({error: true, message: "Failed to fetch posts."}, {status: 500});
