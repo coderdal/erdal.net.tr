@@ -1,7 +1,39 @@
 import Link from "next/link";
 import React from "react";
+import moment from "moment";
 
-const Introduction: React.FC = () => {
+interface Post {
+  _id: string;
+  slug: string;
+  title: string;
+  views: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+interface FetchResult {
+  posts: Post[];
+}
+
+async function fetchPosts(): Promise<FetchResult> {
+  const res = await fetch(process.env.API_URI + "/posts/last" || "");
+ 
+  if (!res.ok) {
+    return {posts: []};
+  }
+ 
+  return res.json();
+}
+
+const Introduction: React.FC = async () => {
+  let {posts}: FetchResult = await fetchPosts();
+
+  posts.forEach(post => {
+    post.createdAt = moment(post.createdAt).format("DD/MM/YYYY");
+  });
+
   return (
     <section className="mt-6">
       <h1 className="font-semibold text-lg mb-2">Last Posts</h1>
@@ -14,11 +46,15 @@ const Introduction: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="cursor-pointer hover:opacity-80">
-            <td className="py-1"><Link href="1" className="block">28/09/2023</Link></td>
-            <td className="py-1"><Link href="1" className="block">The Sliding Mr. Bones (Next Stop, Pottersville)</Link></td>
-            <td className="py-1"><Link href="1" className="block">1,961</Link></td>
-          </tr>
+          {
+            posts.map(post => (
+              <tr className="cursor-pointer hover:opacity-80" key={post._id}>
+                <td className="py-1"><Link href={`/articles/${post.slug}`} className="block">{ post.createdAt }</Link></td>
+                <td className="py-1"><Link href={`/articles/${post.slug}`} className="block">{ post.title }</Link></td>
+                <td className="py-1"><Link href={`/articles/${post.slug}`} className="block">{ post.views }</Link></td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </section>
