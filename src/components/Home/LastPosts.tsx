@@ -8,6 +8,7 @@ interface Post {
   title: string;
   views: number | string;
   content: string;
+  tags: Array<string>;
   createdAt: string;
   updatedAt: string;
   __v: number;

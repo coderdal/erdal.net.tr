@@ -4,7 +4,7 @@ import Post from "@/app/api/models/post";
 import { slugify } from "@/app/api/helper";
 
 export async function POST(request: Request) {
-    const { title, content } = await request.json();
+    const { title, content, tags = [] } = await request.json();
     if (!title || !content || title.length < 3 || content.length < 3) {
         return NextResponse.json({error: true, message: "Missing or invalid params."}, {status: 400});
     }
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
     try {
         await connectDB();
-        const new_post = await Post.create({slug, title, content});
+        const new_post = await Post.create({slug, title, content, tags});
         return NextResponse.json(new_post, {status: 201});
     } catch (error) {
         return NextResponse.json({error: true, message: "Failed to create post."}, {status: 500});
