@@ -7,6 +7,24 @@ export function slugify(text: string): string {
     text = text.replace(/^\s+|\s+$/gm,"");
 
     text = text.replace(/\s+/g, "-");
+
+    const turkishCharsMap: Record<string, string> = {
+      "Ğ":"G",
+      "Ü":"U",
+      "Ş":"S",
+      "İ":"I",
+      "Ö":"O",
+      "Ç":"C",
+      "ğ":"g",
+      "ü":"u",
+      "ş":"s",
+      "ı":"i",
+      "ö":"o",
+      "ç":"c"
+    };
+
+    text = text.replace(/[ĞÜŞİÖÇğüşıöç]/g, (letter) => turkishCharsMap[letter]);
+
     return text;
 }
 
