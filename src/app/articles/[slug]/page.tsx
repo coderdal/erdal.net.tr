@@ -18,15 +18,11 @@ export default async function Article({ params }: { params: { slug: string } }) 
     return notFound();
   }
 
-  const details: Post = post[0];
-
   return (
     <main className="mx-6">
       <article>
-        article details
-        <pre>
-          {JSON.stringify(details)}
-        </pre>
+        <h1 className="text-2xl font-bold mb-2">{ post.title }</h1>
+        <section dangerouslySetInnerHTML={{ __html: post.content }}></section>
       </article>
     </main>
   );

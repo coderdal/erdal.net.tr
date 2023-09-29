@@ -15,7 +15,7 @@ interface PostsFetchResult {
     posts: Post[];
 }
 interface PostFetchResult {
-    post: Post[] | null;
+    post: Post | null;
 }
 
 type DateGrouppedPosts = [string, Post[]][];
