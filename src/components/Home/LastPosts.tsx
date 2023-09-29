@@ -1,22 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import moment from "moment";
-
-interface Post {
-  _id: string;
-  slug: string;
-  title: string;
-  views: number | string;
-  content: string;
-  tags: Array<string>;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-
-interface FetchResult {
-  posts: Post[];
-}
+import { formatDate } from "@/helper";
+import type { FetchResult } from "@/types";
 
 async function fetchPosts(): Promise<FetchResult> {
   const res = await fetch(process.env.API_URI + "/posts/last" || "");
@@ -32,7 +17,7 @@ const Introduction: React.FC = async () => {
   let {posts}: FetchResult = await fetchPosts();
 
   posts.forEach(post => {
-    post.createdAt = moment(post.createdAt).format("DD/MM/YYYY");
+    post.createdAt = formatDate(post.createdAt, "DD/MM/YYYY");
     post.views = String(post.views).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   });
 
@@ -50,7 +35,7 @@ const Introduction: React.FC = async () => {
         <tbody>
           {
             posts.map(post => (
-              <tr className="cursor-pointer hover:opacity-80" key={post._id}>
+              <tr className="cursor-pointer hover:opacity-80 transition-opacity" key={post._id}>
                 <td className="py-1"><Link href={`/articles/${post.slug}`} className="block">{ post.createdAt }</Link></td>
                 <td className="py-1"><Link href={`/articles/${post.slug}`} className="block">{ post.title }</Link></td>
                 <td className="py-1"><Link href={`/articles/${post.slug}`} className="block">{ post.views }</Link></td>

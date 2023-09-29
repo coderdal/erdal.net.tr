@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/app/api/db";
 import Post from "@/app/api/models/post";
-import { slugify } from "@/app/api/helper";
+import { slugify } from "@/helper";
 
 export async function POST(request: Request) {
     const { title, content, tags = [] } = await request.json();
