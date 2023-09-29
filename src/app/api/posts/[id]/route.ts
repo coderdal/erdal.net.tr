@@ -32,13 +32,13 @@ export async function GET(_: Request, {params} : {params: {id: string}}) {
 
     try {
         await connectDB();
-        const post = await Post.findById(id);
+        const post = await Post.find({slug: id}).limit(1);
 
-        if (post === null) {
+        if (post === null || post.length <= 0) {
             throw "Error";
         }
 
-        return NextResponse.json({post}, {status: 200});
+        return NextResponse.json({post: post[0]}, {status: 200});
     } catch (error) {
         return NextResponse.json({error: true, message: "Failed to fetch post."}, {status: 500});
     }

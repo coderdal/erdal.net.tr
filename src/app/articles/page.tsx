@@ -1,9 +1,9 @@
 import React from "react";
 import { formatDate, groupBy } from "@/helper";
-import type { FetchResult, DateGrouppedPosts } from "@/types";
+import type { PostsFetchResult, DateGrouppedPosts } from "@/types";
 import Link from "next/link";
 
-async function fetchPosts(): Promise<FetchResult> {
+async function fetchPosts(): Promise<PostsFetchResult> {
   const res = await fetch(process.env.API_URI + "/posts" || "");
 
   if (!res.ok) {
@@ -14,7 +14,7 @@ async function fetchPosts(): Promise<FetchResult> {
 }
 
 export default async function Articles() {
-  let {posts}: FetchResult = await fetchPosts();
+  let {posts}: PostsFetchResult = await fetchPosts();
 
   // mutate data
   posts.forEach(post => {

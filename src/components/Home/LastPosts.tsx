@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { formatDate } from "@/helper";
-import type { FetchResult } from "@/types";
+import type { PostsFetchResult } from "@/types";
 
-async function fetchPosts(): Promise<FetchResult> {
+async function fetchPosts(): Promise<PostsFetchResult> {
   const res = await fetch(process.env.API_URI + "/posts/last" || "");
  
   if (!res.ok) {
@@ -14,7 +14,7 @@ async function fetchPosts(): Promise<FetchResult> {
 }
 
 const Introduction: React.FC = async () => {
-  let {posts}: FetchResult = await fetchPosts();
+  let {posts}: PostsFetchResult = await fetchPosts();
 
   posts.forEach(post => {
     post.createdAt = formatDate(post.createdAt, "DD/MM/YYYY");
