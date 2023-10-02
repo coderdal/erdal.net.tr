@@ -42,6 +42,13 @@ const Introduction: React.FC = async () => {
               </tr>
             ))
           }
+          {
+            posts.length === 0 && (
+              <tr className="cursor-pointer hover:opacity-80 transition-opacity">
+                <td>No content added yet.</td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
     </section>

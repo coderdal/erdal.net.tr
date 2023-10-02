@@ -47,6 +47,11 @@ export default async function Articles() {
           </React.Fragment>
         ))
       }
+      {
+        grouppedPosts.length === 0 && (
+          <h4>No posts added yet.</h4>
+        )
+      }
       </ul>
     </main>
   );

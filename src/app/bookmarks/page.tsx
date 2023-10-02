@@ -24,6 +24,11 @@ export default async function Articles() {
           <Card bookmark={bookmark} key={bookmark._id} />
         ))
       }
+      {
+        bookmarks.length === 0 && (
+          <h4>No bookmarks added yet.</h4>
+        )
+      }
       </section>
     </main>
   );
