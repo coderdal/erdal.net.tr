@@ -17,9 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-full h-screen flex`}>
+      <body className={`${inter.className} w-full h-screen flex max-md:flex-col`}>
         <SideBar />
-        <main className="flex-1 max-w-3xl mx-auto my-20 leading-7 text-gray-700">
+        <main className="flex-1 max-w-3xl mx-auto my-20 max-md:my-8 leading-7 text-gray-700">
           {children}
         </main>
       </body>
