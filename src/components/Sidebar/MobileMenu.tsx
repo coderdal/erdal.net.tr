@@ -14,7 +14,7 @@ import { TbBrandNextjs } from "react-icons/tb";
 
 const NavigationItem: React.FC = () => {
     return (
-        <div className="w-full h-screen absolute bg-white overflow-hidden">
+        <div className="w-full h-screen absolute bg-white overflow-hidden animate__animated animate__fadeInDown">
             <nav>
                 <SidebarItem Icon={GoCodeOfConduct} href="/">Home</SidebarItem>
                 <SidebarItem Icon={TfiWrite} href="/articles">Articles</SidebarItem>
