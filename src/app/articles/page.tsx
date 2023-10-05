@@ -33,7 +33,7 @@ export default async function Articles() {
       {
         grouppedPosts.map(group => (
           <React.Fragment key={group[0]}>
-            <p className="ml-1.5 text-xs font-semibold text-gray-500 mt-2 -mb-1.5 animate__animated animate__fadeIn animate__slower">{group[0]}</p>
+            <p className="ml-1.5 text-xs font-semibold text-gray-500 mt-2 -mb-1.5">{group[0]}</p>
             {
               group[1].map(post => (
                 <li key={post._id} className="cursor-pointer bg-slate-50 px-2 py-1 rounded-md transition-all hover:opacity-95 hover:bg-slate-200 hover:text-gray-950 font-semibold">

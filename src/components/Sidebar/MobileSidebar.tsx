@@ -28,7 +28,7 @@ const NavigationItem: React.FC = () => {
         <div className="hidden relative max-md:block mx-4">
             <ProfileCard title="Software Developer" picture="/assets/images/pp.png">Muhammed ERDAL</ProfileCard>
             <button className="absolute top-1.5 right-0 rounded transition-colors hover:bg-gray-200 text-2xl h-12 w-12" onClick={toggleMenu}>
-                { isMenuOpened ? <IoMdClose className="m-auto animate__animated animate__bounceIn" /> : <FiMenu className="m-auto animate__animated animate__bounceIn" /> }
+                { isMenuOpened ? <IoMdClose className="m-auto" /> : <FiMenu className="m-auto" /> }
             </button>
             { isMenuOpened && <MobileMenu /> }
         </div>
